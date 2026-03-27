@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Tab bar -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabMode="fixed"
+        app:tabGravity="fill" />
+
+    <!-- Content area – BLE panel and WiFi panel share the same space -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- ============================================================
+             BLE PANEL
+             ============================================================ -->
+        <FrameLayout
+            android:id="@+id/ble_panel_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Scan controls -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <Button
+                            android:id="@+id/scan_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/scan_ble"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@android:color/white" />
+
+                        <Button
+                            android:id="@+id/connect_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/connect"
+                            android:backgroundTint="@color/colorAccent"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <!-- Device list -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/discovered_devices"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <ListView
+                        android:id="@+id/device_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@android:color/darker_gray"
+                        android:divider="@android:color/white"
+                        android:dividerHeight="1dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginVertical="12dp" />
+
+                    <!-- BLE Controls -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ble_controls"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/led_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/led"
+                        android:enabled="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/relay_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_1"
+                        android:enabled="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/relay_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_2"
+                        android:enabled="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/relay_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_3"
+                        android:enabled="false"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/relay_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_4"
+                        android:enabled="false" />
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+
+        <!-- ============================================================
+             WIFI PANEL
+             ============================================================ -->
+        <FrameLayout
+            android:id="@+id/wifi_panel_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- IP address entry -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/esp32_ip_address"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <EditText
+                            android:id="@+id/ip_input"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/ip_hint"
+                            android:inputType="textUri"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true" />
+
+                        <Button
+                            android:id="@+id/wifi_connect_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/connect"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <!-- Status -->
+                    <TextView
+                        android:id="@+id/status_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/not_connected"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- WiFi controls -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wifi_controls"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/wifi_led_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/led"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/wifi_relay_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_1"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/wifi_relay_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_2"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/wifi_relay_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_3"
+                        android:layout_marginBottom="8dp" />
+
+                    <Switch
+                        android:id="@+id/wifi_relay_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/relay_4" />
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <!-- ============================================================
+         LOG OUTPUT (always visible at bottom)
+         ============================================================ -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_label"
+        android:textStyle="bold"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#1A1A1A"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/log_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="#00FF41"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:text=""
+            tools:text="[log messages appear here]" />
+    </ScrollView>
+
+</LinearLayout>
