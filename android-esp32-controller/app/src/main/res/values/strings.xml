@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ESP32 Controller</string>
+
+    <!-- Tab labels -->
+    <string name="tab_ble">BLE</string>
+    <string name="tab_wifi">WiFi</string>
+
+    <!-- BLE panel -->
+    <string name="scan_ble">Scan BLE</string>
+    <string name="stop_scan">Stop Scan</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="discovered_devices">Discovered Devices</string>
+    <string name="ble_controls">BLE Controls</string>
+    <string name="ble_permissions_denied">Bluetooth permissions are required to scan for devices.</string>
+
+    <!-- WiFi panel -->
+    <string name="esp32_ip_address">ESP32 IP Address</string>
+    <string name="ip_hint">e.g. 192.168.1.100</string>
+    <string name="wifi_controls">WiFi Controls</string>
+    <string name="not_connected">Not connected</string>
+    <string name="enter_ip_address">Please enter the ESP32 IP address.</string>
+
+    <!-- Controls -->
+    <string name="led">LED (GPIO 2)</string>
+    <string name="relay_1">Relay 1 (GPIO 26)</string>
+    <string name="relay_2">Relay 2 (GPIO 27)</string>
+    <string name="relay_3">Relay 3 (GPIO 14)</string>
+    <string name="relay_4">Relay 4 (GPIO 12)</string>
+
+    <!-- Log -->
+    <string name="log_label">Log</string>
+</resources>
